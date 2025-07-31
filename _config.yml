@@ -2,6 +2,7 @@
 
 # Site settings
 title: B. L. Alterman
+logo: "/assets/images/headshot.jpg"
 baseurl: ""
 url: ""
 
