@@ -28,7 +28,7 @@ nonrefereed_citations = defaultdict(int)
 
 print("Downloading citation data by year...")
 for i, bibcode in enumerate(bibcodes, 1):
-    url = f"https://api.adsabs.harvard.edu/v1/metrics?bibcode={bibcode}"
+    url = f"https://api.adsabs.harvard.edu/v1/metrics/{bibcode}"
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
         print(f"Failed to get metrics for ({i}) {bibcode}")
