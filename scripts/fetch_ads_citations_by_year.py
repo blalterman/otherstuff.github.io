@@ -16,9 +16,8 @@ ads.config.token = ADS_DEV_KEY
 
 # === Step 1: Get all bibcodes ===
 print("Querying NASA ADS for publications...")
-bibcodes = []
-for paper in ads.SearchQuery(q=f"orcid:{ORCID_ID}", fl=["bibcode"], rows=200):
-    bibcodes.append(paper.bibcode)
+results = ads.SearchQuery(orcid=ORCID_ID, fl=["bibcode"], rows=2000)
+bibcodes = [paper.bibcode for paper in results]
 
 print(f"Found {len(bibcodes)} papers.")
 
@@ -51,11 +50,11 @@ os.makedirs(data_output_dir, exist_ok=True)
 json_output_path = os.path.join(data_output_dir, "citations_by_year.json")
 
 with open(json_output_path, "w") as f:
-    json.dump({
-        "years": all_years,
-        "refereed": ref_counts,
-        "nonrefereed": nonref_counts
-    }, f, indent=2)
+    json.dump(
+        {"years": all_years, "refereed": ref_counts, "nonrefereed": nonref_counts},
+        f,
+        indent=2,
+    )
 
 print(f"Citation data saved to {json_output_path}")
 
@@ -65,8 +64,22 @@ os.makedirs(image_output_dir, exist_ok=True)
 plot_path = os.path.join(image_output_dir, "citations_by_year.svg")
 
 plt.figure(figsize=(10, 6))
-plt.plot(all_years, ref_counts, label="Refereed", color="cornflowerblue", linestyle="-", linewidth=2)
-plt.plot(all_years, nonref_counts, label="Non-Refereed", color="lightgreen", linestyle="--", linewidth=2)
+plt.plot(
+    all_years,
+    ref_counts,
+    label="Refereed",
+    color="cornflowerblue",
+    linestyle="-",
+    linewidth=2,
+)
+plt.plot(
+    all_years,
+    nonref_counts,
+    label="Non-Refereed",
+    color="lightgreen",
+    linestyle="--",
+    linewidth=2,
+)
 plt.title("Citations per Year by Type (NASA ADS)")
 plt.xlabel("Year")
 plt.ylabel("Citations")
