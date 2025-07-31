@@ -17,9 +17,18 @@ import ads
 import requests
 import matplotlib.pyplot as plt
 from collections import defaultdict
+from datetime import datetime, timedelta
 import os
 import json
+import sys
 
+from zoneinfo import ZoneInfo
+
+# Hard code Eastern Time because changing that is a quick update,
+# but it requires a lot of package installs and such to auto-detect.
+local_tz = ZoneInfo("America/New_York")
+
+import pdb
 
 # === Read ORCID and API token from environment variables ===
 ORCID_ID = os.getenv("ADS_ORCID")
@@ -65,13 +74,40 @@ nonrefereed_citations = dict()
 refereed_keys = ("refereed to refereed", "nonrefereed to refereed")
 nonrefereed_keys = ("refereed to nonrefereed", "nonrefereed to nonrefereed")
 
+def print_failure_msg(i, bibcode, response):
+
+    if response.status_code != 429:
+        print(f"""Failed to get metrics for ({i}) {bibcode}""")
+        return
+        
+    reset_time = int(response.headers["X-RateLimit-Reset"])
+    reset_dt = int(response.headers["Retry-After"])
+    
+    reset_time = datetime.fromtimestamp(reset_time, tz=ZoneInfo("UTC"))
+    reset_dt = timedelta(seconds=reset_dt)
+    
+    print(f"""
+Failed to get metrics
+Bibcode          : {bibcode}
+Status Code      : {response.status_code}
+Reason           : {response.reason}
+Retry After      : {reset_time.astimezone(local_tz)}
+Wait Time        : {reset_dt}
+Rate Exceeded at : {(reset_time - reset_dt).astimezone(local_tz)}
+
+Exiting program
+""")
+
+    sys.exit(1)  # Stop making more call
+
 print("Downloading citation data by year...")
 for i, bibcode in enumerate(bibcodes, 1):
     url = f"https://api.adsabs.harvard.edu/v1/metrics/{bibcode}"
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"Failed to get metrics for ({i}) {bibcode} (status code {response.status_code})")
+        print_failure_msg(i, bibcode, response)        
         continue
+        
     data = response.json()
     hist = data.get("histograms", {}).get("citations", {})
     
