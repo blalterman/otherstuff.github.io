@@ -68,6 +68,8 @@ img {
 
 .positions-table th {
   background-color: #f2f2f2;
+}
+
 
 .education-table {
   width: 100%;
@@ -83,4 +85,19 @@ img {
 .education-table th {
   background-color: #f2f2f2;
   text-align: left;
+}
+
+/* Responsive width for pages */
+article.page {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 600px) {
+  article.page {
+    padding: 0 0.75rem;
+  }
 }
