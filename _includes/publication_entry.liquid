@@ -25,6 +25,6 @@
   <span class="authors">{{ formatted_authors }}</span>
   <em>{{ pub.journal }}</em>, {{ pub.year | slice: 0, 4 }}.
   {% if pub.citations and pub.citations > 0 %}
-    <span class="citations"> Citations: {{ pub.citations }}</span>
+    <span class="citations"> Citations: <strong>{{ pub.citations }}</strong></span>
   {% endif %}
 </li>
