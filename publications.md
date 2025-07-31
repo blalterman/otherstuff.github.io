@@ -56,6 +56,8 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 <h2>White Papers</h2>
 {% elsif group.name == "eprint" %}
 <h2>Pre-Prints</h2>
+{% elsif group.name == "phdthesis" %}
+<h2>PhD Thesis</h2>
 {% else %}
 <h2>{{ group.name | capitalize }}</h2>
 {% endif %}
