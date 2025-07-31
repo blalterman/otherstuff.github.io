@@ -7,5 +7,6 @@ main:
     url: "/research/"
   - title: "Publications"
     url: "/publications/"
-  - title: "Contact"
-    url: "/contact/"
+  - title: "Email Me"
+    url: "mailto:blaltermanphd@gmail.com"
+    class: "btn"

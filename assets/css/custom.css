@@ -35,3 +35,16 @@ table {
     overflow-x: auto;
   }
 }
+
+.btn {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  background-color: #007acc;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #005a99;
+}
