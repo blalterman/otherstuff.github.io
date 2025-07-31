@@ -61,18 +61,18 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 {% endif %}
 
 
-    <ul class="publication-list">
+    <ol class="publication-list">
       {% assign pubs = group.items | sort: "year" | reverse %}
       {% for pub in pubs %}
         {% include publication_entry.liquid pub=pub %}
       {% endfor %}
-    </ul>
+    </ol>
   {% endif %}
 {% endfor %}
 
 <style>
 .publication-list {
-  list-style-type: disc;
+  list-style-type: decimal;
   padding-left: 1.5em;
 }
 .publication-list li {
