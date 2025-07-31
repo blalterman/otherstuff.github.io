@@ -31,14 +31,38 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
   {% endif %}
 {% endfor %}
 
-{% assign sorted_other_groups = other_groups | sort: "name" %}
+{% assign custom_order = "phdthesis,article,inproceedings,abstract,techreport,eprint" | split: "," %}
 
-<h2>Conference Presentations</h2>
-<ul class="publication-list">
-  {% assign presentations_sorted = presentations | sort: "year" | reverse %}
-  {% for pub in presentations_sorted %}
-    {% include publication_entry.liquid pub=pub %}
-  {% endfor %}
+{% for type in custom_order %}
+  {% assign group = pubs_by_type | where: "name", type | first %}
+  {% if group %}
+    {% if group.name == "phdthesis" %}
+      <h2>PhD Thesis</h2>
+    {% elsif group.name == "article" %}
+      <h2>Refereed Publications</h2>
+    {% elsif group.name == "inproceedings" %}
+      <h2>Conference Proceedings</h2>
+    {% elsif group.name == "abstract" %}
+      <h2>Conference Presentations</h2>
+    {% elsif group.name == "techreport" %}
+      <h2>White Papers</h2>
+    {% elsif group.name == "eprint" %}
+      <h2>Pre-Prints</h2>
+    {% else %}
+      <h2>{{ group.name | capitalize }}</h2>
+    {% endif %}
+
+    <ul class="publication-list">
+      {% assign pubs = group.items | sort: "year" | reverse %}
+      {% for pub in pubs %}
+        {% include publication_entry.liquid pub=pub %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}
 </ul>
 
 <h2>Conference Proceedings</h2>
