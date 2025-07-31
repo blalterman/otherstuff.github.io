@@ -5,11 +5,47 @@ img {
   height: auto;
 }
 
+.profile-links {
+  list-style: none;
+  padding-left: 0;
+}
+
+.profile-links li {
+  padding-left: 28px;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: 0 50%;
+  margin-bottom: 0.5rem;
+}
+
+.profile-links li a {
+  text-decoration: none;
+}
+
+.profile-links li.orcid {
+  background-image: url("/assets/images/orcid/ORCID-iD_icon_24x24.png");
+}
+
+.profile-links li.ads {
+  background-image: url("/assets/images/ads/ads.svg");
+}
+
+.profile-links li.google-scholar {
+  background-image: url("/assets/images/google-scholar/google-scholar.svg");
+}
+
+.profile-links li.arxiv {
+  background-image: url("/assets/images/arxiv/arxiv.svg");
+}
+
+.profile-links li.github {
+  background-image: url("/assets/images/github/github-mark.svg");
+  
 .publication-list {
   width: 100%;
   max-width: 100%;
 }
-
+  
 table {
   width: 100%;
   max-width: 100%;
