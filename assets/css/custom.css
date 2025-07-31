@@ -34,23 +34,23 @@ img {
   background-color: #005a99;
 }
 
-  .about-columns {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-.about-left,
-.about-right {
-  flex: 1;
-  min-width: 250px;
+.positions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
 }
 
-@media (max-width: 600px) {
-  .about-columns {
-    flex-direction: column;
-  }
+.positions-table th,
+.positions-table td {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
+
+.positions-table th {
+  background-color: #f2f2f2;
+}
+
 
 .education-table {
   width: 100%;
@@ -66,4 +66,19 @@ img {
 .education-table th {
   background-color: #f2f2f2;
   text-align: left;
+}
+
+/* Responsive width for pages */
+article.page {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 600px) {
+  article.page {
+    padding: 0 0.75rem;
+  }
 }

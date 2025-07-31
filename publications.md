@@ -7,7 +7,7 @@ classes: wide publications-page
 
 ## Statistics
 
-This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0001-6673-3432&sort=date%20desc,%20bibcode%20desc&p_=0) and is updated weekly.
+This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu/search/q=orcid%3A{{ site.ads_orcid }}&sort=date%20desc,%20bibcode%20desc&p_=0) and is updated weekly.
 
 - **h-index**: {{ site.data.ads_metrics["indicators"]["h"] }}
 - **Total papers**: {{ site.data.ads_metrics["basic stats"]["number of papers"] }}
@@ -21,15 +21,15 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 {% assign custom_order = "phdthesis,article,inproceedings,abstract,techreport,eprint" | split: "," %}
 
 {% for type in custom_order %}
-  {% assign group = nil %}
-  {% for g in pubs_by_type %}
-    {% if g.name == type %}
-      {% assign group = g %}
-    {% endif %}
-  {% endfor %}
+{% assign group = nil %}
+{% for g in pubs_by_type %}
+{% if g.name == type %}
+{% assign group = g %}
+{% endif %}
+{% endfor %}
 
-  {% if group %}
-    
+{% if group %}
+
 {% if group.name == "phdthesis" %}
 
 <h3>PhD Thesis</h3>
@@ -60,17 +60,16 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 
 {% endif %}
 
+{% assign pubs = group.items | sort: "year" | reverse %}
+{% assign pub_count = pubs | size %}
 
-<ol class="publication-list">
-  
-  {% assign pubs = group.items | sort: "year" | reverse %}
+<ol class="publication-list" reversed start="{{ pub_count }}">
   {% for pub in pubs %}
     {% include publication_entry.liquid pub=pub %}
   {% endfor %}
-
 </ol>
 
-  {% endif %}
+{% endif %}
 {% endfor %}
 
 <style>
