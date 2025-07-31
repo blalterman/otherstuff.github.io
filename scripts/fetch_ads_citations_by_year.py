@@ -41,6 +41,8 @@ for i, bibcode in enumerate(bibcodes, 1):
     for year, count in hist.get("nonrefereed", {}).items():
         nonrefereed_citations[int(year)] += count
 
+print(dir(response))
+
 # === Step 3: Align years and prepare data
 print(refereed_citations)
 print(nonrefereed_citations)
