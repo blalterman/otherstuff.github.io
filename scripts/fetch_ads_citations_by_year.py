@@ -98,8 +98,6 @@ nonrefereed_citations = [{'year': k, 'citations': v} for k, v in nonrefereed_cit
 print(refereed_citations)
 print(nonrefereed_citations)
 
-pdb.set_trace()
-
 all_years = sorted(set(refereed_citations) | set(nonrefereed_citations))
 ref_counts = [refereed_citations.get(y, 0) for y in all_years]
 nonref_counts = [nonrefereed_citations.get(y, 0) for y in all_years]
