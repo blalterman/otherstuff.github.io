@@ -4,7 +4,7 @@ title: Publications
 permalink: /publications/
 ---
 
-## Statistics 
+## Statistics
 
 This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu) and is updated weekly.
 
@@ -14,16 +14,18 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 - **Refereed papers**: {{ site.data.ads_metrics["basic stats refereed"]["number of papers"] }}
 - **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
 
-
 ## Publication List
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
-{% assign combined_groups = "" | split: "" %}
+{% assign presentations = "" | split: "" %}
+{% assign proceedings = "" | split: "" %}
 {% assign other_groups = "" | split: "" %}
 
 {% for group in pubs_by_type %}
-  {% if group.name == "inproceedings" or group.name == "abstracts" %}
-    {% assign combined_groups = combined_groups | concat: group.items %}
+  {% if group.name == "abstract" %}
+    {% assign presentations = group.items %}
+  {% elsif group.name == "inproceedings" %}
+    {% assign proceedings = group.items %}
   {% else %}
     {% assign other_groups = other_groups | push: group %}
   {% endif %}
@@ -31,20 +33,35 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 
 {% assign sorted_other_groups = other_groups | sort: "name" %}
 
-<h2>Conference Papers and Abstracts</h2>
+<h2>Conference Presentations</h2>
 <ul class="publication-list">
-  {% assign combined_sorted = combined_groups | sort: "year" | reverse %}
-  {% for pub in combined_sorted %}
+  {% assign presentations_sorted = presentations | sort: "year" | reverse %}
+  {% for pub in presentations_sorted %}
+    {% include publication_entry.liquid pub=pub %}
+  {% endfor %}
+</ul>
+
+<h2>Conference Proceedings</h2>
+<ul class="publication-list">
+  {% assign proceedings_sorted = proceedings | sort: "year" | reverse %}
+  {% for pub in proceedings_sorted %}
     {% include publication_entry.liquid pub=pub %}
   {% endfor %}
 </ul>
 
 {% for group in sorted_other_groups %}
-  {% if group.name == "phdthesis" %}
-    <h2>PhD Thesis</h2>
-  {% else %}
-    <h2>{{ group.name | capitalize }}</h2>
-  {% endif %}
+{% if group.name == "article" %}
+<h2>Refereed Publications</h2>
+{% elsif group.name == "techreport" %}
+<h2>White Papers</h2>
+{% elsif group.name == "eprint" %}
+<h2>Pre-Prints</h2>
+{% elsif group.name == "phdthesis" %}
+<h2>PhD Thesis</h2>
+{% else %}
+<h2>{{ group.name | capitalize }}</h2>
+{% endif %}
+
   <ul class="publication-list">
     {% assign pubs = group.items | sort: "year" | reverse %}
     {% for pub in pubs %}
