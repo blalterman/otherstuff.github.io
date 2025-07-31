@@ -12,9 +12,10 @@ keywords:
   - space weather
 ---
 
-<img src="/assets/images/headshot.jpg" alt="Ben Alterman headshot" class="about-headshot" />
-
-Ben Alterman is a Research Astrophysicist at NASA’s Goddard Space Flight Center. He earned his PhD in Applied Physics from the University of Michigan, where he explored how Coulomb collisions and kinetic processes shape the solar wind. After completing a postdoc at the Southwest Research Institute in San Antonio—where he was promoted to Research Scientist—Ben transitioned to civil service at NASA, continuing his work in heliophysics.
+<p>
+  <img src="/assets/images/headshot.jpg" alt="Ben Alterman headshot" class="about-headshot" />
+  Ben Alterman is a Research Astrophysicist at NASA’s Goddard Space Flight Center. He earned his PhD in Applied Physics from the University of Michigan, where he explored how Coulomb collisions and kinetic processes shape the solar wind. After completing a postdoc at the Southwest Research Institute in San Antonio—where he was promoted to Research Scientist—Ben transitioned to civil service at NASA, continuing his work in heliophysics.
+</p>
 
 Ben is a heliophysics generalist with broad expertise in the thermal and suprathermal solar wind. His research spans multiple spacecraft—including Wind, ACE, Parker Solar Probe, and Solar Orbiter—and multiple timescales, from the second-by-second dynamics of kinetic instabilities to long-term variations across solar cycles. He’s published widely on solar wind composition, solar sources of the solar wind, and the role of helium as a diagnostic of solar activity.
 
