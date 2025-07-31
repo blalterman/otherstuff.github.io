@@ -15,35 +15,41 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 
 ## Publications
 
-<ul class="publication-list">
-{% assign pubs = site.data.ads_publications | sort: "year" | reverse %}
-{% for pub in pubs %}
-  {% assign formatted_authors = "" %}
-  {% for author in pub.authors %}
-    {% if author contains "Alterman" %}
-      {% assign author = author | replace: "Ben Alterman", "<strong>Ben Alterman</strong>" %}
-      {% assign author = author | replace: "Benjamin Alterman", "<strong>Benjamin Alterman</strong>" %}
-      {% assign author = author | replace: "Benjamin L. Alterman", "<strong>Benjamin L. Alterman</strong>" %}
-      {% assign author = author | replace: "B. Alterman", "<strong>B. Alterman</strong>" %}
-      {% assign author = author | replace: "B. L. Alterman", "<strong>B. L. Alterman</strong>" %}
-      {% assign author = author | replace: "Alterman, B.", "<strong>Alterman, B.</strong>" %}
-      {% assign author = author | replace: "Alterman, B. L.", "<strong>Alterman, B. L.</strong>" %}
-    {% endif %}
-    {% assign formatted_authors = formatted_authors | append: author %}
-    {% unless forloop.last %}
-      {% assign formatted_authors = formatted_authors | append: ", " %}
-    {% endunless %}
+{% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
+{% assign sorted_pubs_by_type = pubs_by_type | sort: "name" %}
+
+{% for group in sorted_pubs_by_type %}
+  <h2>{{ group.name | capitalize }}</h2>
+  <ul class="publication-list">
+  {% assign pubs = group.items | sort: "year" | reverse %}
+  {% for pub in pubs %}
+    {% assign formatted_authors = "" %}
+    {% for author in pub.authors %}
+      {% if author contains "Alterman" %}
+        {% assign author = author | replace: "Ben Alterman", "<strong>Ben Alterman</strong>" %}
+        {% assign author = author | replace: "Benjamin Alterman", "<strong>Benjamin Alterman</strong>" %}
+        {% assign author = author | replace: "Benjamin L. Alterman", "<strong>Benjamin L. Alterman</strong>" %}
+        {% assign author = author | replace: "B. Alterman", "<strong>B. Alterman</strong>" %}
+        {% assign author = author | replace: "B. L. Alterman", "<strong>B. L. Alterman</strong>" %}
+        {% assign author = author | replace: "Alterman, B.", "<strong>Alterman, B.</strong>" %}
+        {% assign author = author | replace: "Alterman, B. L.", "<strong>Alterman, B. L.</strong>" %}
+      {% endif %}
+      {% assign formatted_authors = formatted_authors | append: author %}
+      {% unless forloop.last %}
+        {% assign formatted_authors = formatted_authors | append: ", " %}
+      {% endunless %}
+    {% endfor %}
+    <li>
+      <strong><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br>
+      <span class="authors">{{ formatted_authors }}</span><br>
+      <em>{{ pub.journal }}</em>, {{ pub.year }}.
+      {% if pub.citations and pub.citations > 0 %}
+        <span class="citations"> Citations: {{ pub.citations }}</span>
+      {% endif %}
+    </li>
   {% endfor %}
-  <li>
-    <strong><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br>
-    <span class="authors">{{ formatted_authors }}</span><br>
-    <em>{{ pub.journal }}</em>, {{ pub.year }}.
-    {% if pub.citations and pub.citations > 0 %}
-      <span class="citations"> Citations: {{ pub.citations }}</span>
-    {% endif %}
-  </li>
+  </ul>
 {% endfor %}
-</ul>
 
 <style>
 .publication-list {
@@ -62,4 +68,3 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
   text-decoration: underline;
 }
 </style>
-
