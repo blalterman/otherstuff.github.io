@@ -17,24 +17,16 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 ## Publication List
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
-{% assign presentations = "" | split: "" %}
-{% assign proceedings = "" | split: "" %}
-{% assign other_groups = "" | split: "" %}
-
-{% for group in pubs_by_type %}
-  {% if group.name == "abstract" %}
-    {% assign presentations = group.items %}
-  {% elsif group.name == "inproceedings" %}
-    {% assign proceedings = group.items %}
-  {% else %}
-    {% assign other_groups = other_groups | push: group %}
-  {% endif %}
-{% endfor %}
-
 {% assign custom_order = "phdthesis,article,inproceedings,abstract,techreport,eprint" | split: "," %}
 
 {% for type in custom_order %}
-  {% assign group = pubs_by_type | where: "name", type | first %}
+  {% assign group = nil %}
+  {% for g in pubs_by_type %}
+    {% if g.name == type %}
+      {% assign group = g %}
+    {% endif %}
+  {% endfor %}
+
   {% if group %}
     {% if group.name == "phdthesis" %}
       <h2>PhD Thesis</h2>
@@ -59,39 +51,6 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
       {% endfor %}
     </ul>
   {% endif %}
-{% endfor %}
-    </ul>
-  {% endif %}
-{% endfor %}
-</ul>
-
-<h2>Conference Proceedings</h2>
-<ul class="publication-list">
-  {% assign proceedings_sorted = proceedings | sort: "year" | reverse %}
-  {% for pub in proceedings_sorted %}
-    {% include publication_entry.liquid pub=pub %}
-  {% endfor %}
-</ul>
-
-{% for group in sorted_other_groups %}
-{% if group.name == "article" %}
-<h2>Refereed Publications</h2>
-{% elsif group.name == "techreport" %}
-<h2>White Papers</h2>
-{% elsif group.name == "eprint" %}
-<h2>Pre-Prints</h2>
-{% elsif group.name == "phdthesis" %}
-<h2>PhD Thesis</h2>
-{% else %}
-<h2>{{ group.name | capitalize }}</h2>
-{% endif %}
-
-  <ul class="publication-list">
-    {% assign pubs = group.items | sort: "year" | reverse %}
-    {% for pub in pubs %}
-      {% include publication_entry.liquid pub=pub %}
-    {% endfor %}
-  </ul>
 {% endfor %}
 
 <style>
