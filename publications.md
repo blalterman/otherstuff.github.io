@@ -15,7 +15,7 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 - **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
 
 
-## Publication List
+## Publications
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
 {% assign combined_groups = "" | split: "" %}
@@ -39,13 +39,31 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
   {% endfor %}
 </ul>
 
-{% for group in sorted_other_groups %}
-  <h2>{{ group.name | capitalize }}</h2>
-  <ul class="publication-list">
-    {% assign pubs = group.items | sort: "year" | reverse %}
-    {% for pub in pubs %}
-      {% include publication_entry.liquid pub=pub %}
-    {% endfor %}
+{% assign group_order = "phdthesis,article,dataset,inproceedings,techreport,eprint" | split: "," %}
+{% for type in group_order %}
+  {% for group in sorted_other_groups %}
+    {% if group.name == type %}
+      <h2>
+        {% case group.name %}
+          {% when "abstracts" %}Conference Presentations
+          {% when "article" %}Refereed Publication
+          {% when "eprint" %}Pre-print
+          {% when "phdthesis" %}PhD Thesis
+          {% when "techreport" %}White Papers
+          {% when "dataset" %}Datasets
+          {% when "inproceedings" %}Conference Proceedings
+          {% else %}{{ group.name | capitalize }}
+        {% endcase %}
+      </h2>
+      <ul class="publication-list">
+        {% assign pubs = group.items | sort: "year" | reverse %}
+        {% for pub in pubs %}
+          {% include publication_entry.liquid pub=pub %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
   </ul>
 {% endfor %}
 
