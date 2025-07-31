@@ -2,6 +2,9 @@
 layout: single
 title: About
 permalink: /about/
+description: Ben Alterman is a NASA Research Astrophysicist studying the solar wind, space weather, and humanity’s place in the heliosphere using data from Wind, ACE, Parker Solar Probe, and Solar Orbiter.
+author: B. L. Alterman
+image: /assets/images/headshot.jpg
 ---
 
 Ben Alterman is a Research Astrophysicist at NASA’s Goddard Space Flight Center. He earned his PhD in Applied Physics from the University of Michigan, where he explored how Coulomb collisions and kinetic processes shape the solar wind. After completing a postdoc at the Southwest Research Institute in San Antonio—where he was promoted to Research Scientist—Ben transitioned to civil service at NASA, continuing his work in heliophysics.
