@@ -40,7 +40,11 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 </ul>
 
 {% for group in sorted_other_groups %}
-  <h2>{{ group.name | capitalize }}</h2>
+  {% if group.name == "phdthesis" %}
+    <h2>PhD Thesis</h2>
+  {% else %}
+    <h2>{{ group.name | capitalize }}</h2>
+  {% endif %}
   <ul class="publication-list">
     {% assign pubs = group.items | sort: "year" | reverse %}
     {% for pub in pubs %}
