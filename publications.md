@@ -38,8 +38,7 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
   {% assign formatted_name = lastname | append: ", " | append: initials %}
 
   {% if formatted_name contains "Alterman" %}
-    {% assign formatted_name = formatted_name | replace: "Alterman, B.", "<strong>Alterman, B.</strong>" %}
-    {% assign formatted_name = formatted_name | replace: "Alterman, B. L.", "<strong>Alterman, B. L.</strong>" %}
+    {% assign formatted_name = "<strong>Alterman, B. L.</strong>" %}
   {% endif %}
 
   {% assign formatted_authors = formatted_authors | append: formatted_name %}
@@ -50,7 +49,7 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
     <li>
       <strong><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br>
       <span class="authors">{{ formatted_authors }}</span><br>
-      <em>{{ pub.journal }}</em>, {{ pub.year }}.
+      <em>{{ pub.journal }}</em>, {{ pub.year | date: '%Y' }}.
       {% if pub.citations and pub.citations > 0 %}
         <span class="citations"> Citations: {{ pub.citations }}</span>
       {% endif %}
