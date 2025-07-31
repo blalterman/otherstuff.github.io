@@ -42,7 +42,7 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 
 {% if group.name == "techreport" %}
 <h2>White Papers</h2>
-{% elseif group.name == "eprint" %}
+{% elsif group.name == "eprint" %}
 <h2>Pre-Prints</h2>
 {% else %}
 <h2>{{ group.name | capitalize }}</h2>
