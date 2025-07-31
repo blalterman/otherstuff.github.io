@@ -34,11 +34,11 @@ img {
   background-color: #005a99;
 }
 
-.about-columns {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
+  .about-columns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
 
 .about-left,
 .about-right {
@@ -51,6 +51,7 @@ img {
     flex-direction: column;
   }
 }
+
 
 .positions-table {
   width: 100%;
@@ -67,4 +68,19 @@ img {
 
 .positions-table th {
   background-color: #f2f2f2;
+
+.education-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.education-table th,
+.education-table td {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+}
+
+.education-table th {
+  background-color: #f2f2f2;
+  text-align: left;
 }
