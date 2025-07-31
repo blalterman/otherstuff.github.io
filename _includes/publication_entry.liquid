@@ -23,7 +23,7 @@
 <li>
   <strong><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br>
   <span class="authors">{{ formatted_authors }}</span><br>
-  <em>{{ pub.journal }}</em>, {{ pub.year | date: '%Y' }}.
+  <em>{{ pub.journal }}</em>, {{ pub.year | slice: 0, 4 }}.
   {% if pub.citations and pub.citations > 0 %}
     <span class="citations"> Citations: {{ pub.citations }}</span>
   {% endif %}

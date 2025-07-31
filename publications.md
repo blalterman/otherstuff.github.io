@@ -39,12 +39,16 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 </ul>
 
 {% for group in sorted_other_groups %}
-{% assign heading = group.name | capitalize %}
 {% if group.name == "article" %}
-{% assign heading = "Refereed Publications" %}
+<h2>Refereed Publications</h2>
+{% elsif group.name == "techreport" %}
+<h2>White Papers</h2>
+{% elsif group.name == "eprint" %}
+<h2>Pre-Prints</h2>
+{% else %}
+<h2>{{ group.name | capitalize }}</h2>
 {% endif %}
 
-  <h2>{{ heading }}</h2>
   <ul class="publication-list">
     {% assign pubs = group.items | sort: "year" | reverse %}
     {% for pub in pubs %}
