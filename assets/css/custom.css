@@ -52,6 +52,23 @@ img {
   }
 }
 
+
+.positions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.positions-table th,
+.positions-table td {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.positions-table th {
+  background-color: #f2f2f2;
+
 .education-table {
   width: 100%;
   border-collapse: collapse;

@@ -40,9 +40,25 @@ You can find my research profiles and publications at the links below:
       </tbody>
     </table>
     <h2>Experience</h2>
-    <ul>
-      <li>Research Scientist, XYZ Observatory, 20XX–present</li>
-      <li>Postdoctoral Fellow, ABC Institute, 20XX–20XX</li>
-    </ul>
+<table class="positions-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Company</th>
+      <th>Dates</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pos in site.data.positions %}
+    <tr>
+      <td>{{ pos["Position Title"] }}</td>
+      <td>{{ pos.Company }}</td>
+      <td>{{ pos.Dates }}</td>
+      <td>{{ pos.Location }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
   </div>
 </section>
