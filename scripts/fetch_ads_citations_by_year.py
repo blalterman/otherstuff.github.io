@@ -1,3 +1,18 @@
+"""
+Fetches yearly citation counts for all NASA ADS publications associated with a given ORCID.
+
+Reads ADS_ORCID and ADS_DEV_KEY from environment variables, retrieves all bibcodes, then fetches citation histograms per year from the NASA ADS metrics API. Outputs a JSON file and an SVG plot.
+
+Raises
+------
+ValueError
+    If required environment variables are not set.
+
+Example
+-------
+$ python scripts/fetch_ads_citations_by_year.py
+"""
+
 import ads
 import requests
 import matplotlib.pyplot as plt
@@ -21,7 +36,7 @@ bibcodes = [paper.bibcode for paper in results]
 
 print(f"Found {len(bibcodes)} papers.")
 
-# === Step 2: Query citation histogram ===
+# === Step 2: Query citation histogram by year ===
 headers = {"Authorization": f"Bearer {ADS_DEV_KEY}"}
 refereed_citations = defaultdict(int)
 nonrefereed_citations = defaultdict(int)
@@ -33,15 +48,14 @@ for i, bibcode in enumerate(bibcodes, 1):
     if response.status_code != 200:
         print(f"Failed to get metrics for ({i}) {bibcode}")
         continue
-    hist = response.json().get("citation histogram", {})
+    data = response.json()
+    hist = data.get("histograms", {}).get("citations", {})
     print(i, bibcode)
     print(hist)
     for year, count in hist.get("refereed", {}).items():
         refereed_citations[int(year)] += count
     for year, count in hist.get("nonrefereed", {}).items():
         nonrefereed_citations[int(year)] += count
-
-print(dir(response))
 
 # === Step 3: Align years and prepare data
 print(refereed_citations)
