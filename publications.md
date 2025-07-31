@@ -31,31 +31,31 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
   {% if group %}
     {% if group.name == "phdthesis" %}
     
-      <h2>PhD Thesis</h2>
+      ## PhD Thesis
       
     {% elsif group.name == "article" %}
     
-      <h2>Refereed Publications</h2>
+      ## Refereed Publications
       
     {% elsif group.name == "inproceedings" %}
     
-      <h2>Conference Proceedings</h2>
+      ## Conference Proceedings
       
     {% elsif group.name == "abstract" %}
     
-      <h2>Conference Presentations</h2>
+      ## Conference Presentations
       
     {% elsif group.name == "techreport" %}
     
-      <h2>White Papers</h2>
+      ## White Papers
       
     {% elsif group.name == "eprint" %}
     
-      <h2>Pre-Prints</h2>
+      ## Pre-Prints
       
     {% else %}
     
-      <h2>{{ group.name | capitalize }}</h2>
+      ## {{ group.name | capitalize }}
       
     {% endif %}
 
