@@ -45,14 +45,16 @@ This page is automatically generated using citation data from [NASA ADS](https:/
 <table class="stats-table">
   <caption>ADS Citation Metrics</caption>
   <tbody>
+    <tr><th>h-index</th><td>{{ site.data.ads_metrics["citation stats"]["h index"] }}</td></tr>
     <tr><th>Total papers</th><td>{{ site.data.ads_metrics["citation stats"]["total number of papers"] }}</td></tr>
     <tr><th>Refereed papers</th><td>{{ site.data.ads_metrics["citation stats"]["number of refereed papers"] }}</td></tr>
     <tr><th>Total citations</th><td>{{ site.data.ads_metrics["citation stats"]["total number of citations"] }}</td></tr>
     <tr><th>Refereed citations</th><td>{{ site.data.ads_metrics["citation stats"]["number of refereed citations"] }}</td></tr>
-    <tr><th>h-index</th><td>{{ site.data.ads_metrics["citation stats"]["h index"] }}</td></tr>
+<!-- 
     <tr><th>Normalized h-index</th><td>{{ site.data.ads_metrics["citation stats"]["normalized h index"] }}</td></tr>
     <tr><th>i10 index</th><td>{{ site.data.ads_metrics["citation stats"]["i10 index"] }}</td></tr>
     <tr><th>tori index</th><td>{{ site.data.ads_metrics["citation stats"]["tori index"] }}</td></tr>
     <tr><th>riq index</th><td>{{ site.data.ads_metrics["citation stats"]["riq index"] }}</td></tr>
+ -->
   </tbody>
 </table>
