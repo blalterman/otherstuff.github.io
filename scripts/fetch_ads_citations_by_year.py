@@ -35,29 +35,35 @@ print("Querying NASA ADS for publications...")
 # results = ads.SearchQuery(orcid=ORCID_ID, fl=["bibcode"], rows=2000)
 # bibcodes = [paper.bibcode for paper in results]
 
-results = ads.SearchQuery(orcid=ORCID_ID, fl=["bibcode", "property"], rows=2000)
+results = ads.SearchQuery(orcid=ORCID_ID, fl=["bibcode", 
+# "property"
+], rows=2000)
 
 bibcodes = []
-is_refereed = {}
+# is_refereed = {}
 for paper in results:
     bibcodes.append(paper.bibcode)
-    props = getattr(paper, "property", []) or []
-    is_refereed[paper.bibcode] = "REFEREED" in props
+#     props = getattr(paper, "property", []) or []
+#     is_refereed[paper.bibcode] = "REFEREED" in props
 
-print(f"Found {len(bibcodes)} papers ({sum([v for k, v in is_refereed.items() if v])} refereed).")
+# print(f"Found {len(bibcodes)} papers ({sum([v for k, v in is_refereed.items() if v])} refereed).")
+print(f"Found {len(bibcodes)} papers.")
 
 # === Step 2: Query citation histogram by year ===
 headers = {"Authorization": f"Bearer {ADS_DEV_KEY}"}
 refereed_citations = dict()
 nonrefereed_citations = dict()
 
-keys_to_get_citations = {"refereed": 
-                     {"refereed": "refereed to refereed", 
-                     "nonrefereed": "refereed to nonrefereed"},
-                     "nonrefereed": 
-                     {"refereed": "nonrefereed to refereed", 
-                     "nonrefereed": "nonrefereed to nonrefereed"},
-                     }
+# keys_to_get_citations = {"refereed": 
+#                      {"refereed": "refereed to refereed", 
+#                      "nonrefereed": "refereed to nonrefereed"},
+#                      "nonrefereed": 
+#                      {"refereed": "nonrefereed to refereed", 
+#                      "nonrefereed": "nonrefereed to nonrefereed"},
+#                      }
+
+refereed_keys = ("refereed to refereed", "nonrefereed to refereed")
+nonrefereed_keys = ("refereed to nonrefereed", "nonrefereed to nonrefereed")
 
 print("Downloading citation data by year...")
 for i, bibcode in enumerate(bibcodes, 1):
@@ -68,13 +74,14 @@ for i, bibcode in enumerate(bibcodes, 1):
         continue
     data = response.json()
     hist = data.get("histograms", {}).get("citations", {})
+    
 #     print(i, bibcode)
 #     print(hist)
+
 #     print(is_refereed[bibcode])
-    hist_keys = keys_to_get_citations["refereed" if is_refereed[bibcode] else "nonrefereed"]
-    
-    refereed_keys = [k for k in hist.keys() if k.endswith("to refereed")]
-    nonrefereed_keys = [k for k in hist.keys() if k.endswith("to nonrefereed")]
+#     hist_keys = keys_to_get_citations["refereed" if is_refereed[bibcode] else "nonrefereed"]
+#     refereed_keys = [k for k in hist.keys() if k.endswith("to refereed")]
+#     nonrefereed_keys = [k for k in hist.keys() if k.endswith("to nonrefereed")]
     
     for k in refereed_keys:
         refereed_citations[(bibcode, k)] = hist.get(k, {})
