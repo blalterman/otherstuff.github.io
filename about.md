@@ -3,6 +3,8 @@ layout: single
 title: About
 permalink: /about/
 ---
+<p>Add your introductory paragraph here.</p>
+<p>Add a second paragraph about yourself here.</p>
 
 You can find my research profiles and publications at the links below:
 
@@ -12,12 +14,10 @@ You can find my research profiles and publications at the links below:
 - <img src="/assets/images/arxiv/arxiv.svg" alt="arXiv logo" width="20" height="20"> [arXiv](https://arxiv.org/a/alterman_b_1)
 - <img src="/assets/images/github/github-mark.svg" alt="GitHub logo" width="20" height="20"> [GitHub](https://github.com/blalterman)
 
-<section>
-  <p>Add your introductory paragraph here.</p>
-  <p>Add a second paragraph about yourself here.</p>
-
-  <h2>Education</h2>
-  <table class="education-table">
+<section class="about-columns">
+  <div class="about-right">
+    <h2>Education</h2>
+    <table class="education-table">
       <thead>
         <tr>
           <th>Institution</th>
