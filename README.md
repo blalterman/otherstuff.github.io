@@ -12,7 +12,7 @@ styling. The site can be deployed with GitHub Pages.
 ├── _config.yml        # Jekyll configuration
 ├── index.html         # Home page
 ├── about.html         # About page
-├── contact.html       # Contact page
+├── contact.md         # Contact page
 ├── research.html      # Research page
 ├── publications.md    # Publications page
 ├── README.md          # Project documentation
