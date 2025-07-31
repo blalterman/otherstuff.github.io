@@ -1,0 +1,9 @@
+# Jekyll configuration
+
+# Site settings
+title: Brian L. Alterman
+baseurl: ""
+url: ""
+
+# Build settings
+markdown: kramdown
