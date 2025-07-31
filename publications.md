@@ -2,6 +2,7 @@
 layout: single
 title: Publications
 permalink: /publications/
+classes: wide
 ---
 
 ## Statistics
