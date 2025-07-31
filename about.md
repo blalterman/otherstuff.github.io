@@ -19,10 +19,26 @@ You can find my research profiles and publications at the links below:
   </div>
   <div class="about-right">
     <h2>Education</h2>
-    <ul>
-      <li>Ph.D., Astronomy, Example University, 20XX</li>
-      <li>B.S., Physics, Sample College, 20XX</li>
-    </ul>
+    <table class="education-table">
+      <thead>
+        <tr>
+          <th>Institution</th>
+          <th>Department</th>
+          <th>Location</th>
+          <th>Dates</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for edu in site.data.education %}
+        <tr>
+          <td>{{ edu.Institution }}</td>
+          <td>{{ edu.Department }}</td>
+          <td>{{ edu.Location }}</td>
+          <td>{{ edu.Dates }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
     <h2>Experience</h2>
     <ul>
       <li>Research Scientist, XYZ Observatory, 20XX–present</li>
