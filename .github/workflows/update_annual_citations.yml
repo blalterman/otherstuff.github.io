@@ -33,7 +33,7 @@ jobs:
         env:
           ADS_ORCID: ${{ secrets.ADS_ORCID }}
           ADS_DEV_KEY: ${{ secrets.ADS_DEV_KEY }}
-        run: python scripts/citations_by_year.py
+        run: python scripts/fetch_ads_citations_by_year.py
 
       - name: Commit and push updated data and plot
         run: |
