@@ -31,7 +31,7 @@ for i, bibcode in enumerate(bibcodes, 1):
     url = f"https://api.adsabs.harvard.edu/v1/metrics?bibcode={bibcode}"
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"Failed to get metrics for {bibcode}")
+        print(f"Failed to get metrics for ({i}) {bibcode}")
         continue
     hist = response.json().get("citation histogram", {})
     print(i, bibcode)
