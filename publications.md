@@ -68,3 +68,67 @@ This page is automatically generated using citation data from [NASA ADS](https:/
     </tr>
   </tbody>
 </table>
+
+
+
+## Publication List
+
+---
+layout: page
+title: My Publications
+permalink: /publications/
+---
+
+This list of publications is automatically updated weekly using data from [NASA ADS](https://ui.adsabs.harvard.edu).
+
+<table class="pub-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Authors</th>
+      <th>Journal</th>
+      <th>Date</th>
+      <th>Citations</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% assign pubs = site.data.ads_publications | sort: "year" | reverse %}
+  {% for pub in pubs %}
+    <tr>
+      <td>
+        <a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a>
+      </td>
+      <td>{{ pub.authors | join: ", " }}</td>
+      <td>{{ pub.journal }}</td>
+      <td>{{ pub.month }} {{ pub.year }}</td>
+      <td>{{ pub.citations }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<style>
+  .pub-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    font-size: 0.95rem;
+  }
+  .pub-table th,
+  .pub-table td {
+    border: 1px solid #ccc;
+    padding: 0.6em;
+    text-align: left;
+  }
+  .pub-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  .pub-table a {
+    color: #0645ad;
+    text-decoration: none;
+  }
+  .pub-table a:hover {
+    text-decoration: underline;
+  }
+</style>
