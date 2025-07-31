@@ -34,38 +34,56 @@ img {
   background-color: #005a99;
 }
 
+
 .positions-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 0.5rem;
+  margin: 0.5rem 0 1rem 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .positions-table th,
 .positions-table td {
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem;
   border-bottom: 1px solid #ddd;
   text-align: left;
 }
 
 .positions-table th {
-  background-color: #f2f2f2;
+  background-color: #4a5568;
+  color: #fff;
+}
+
+.positions-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
 
 .education-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .education-table th,
 .education-table td {
-  border: 1px solid #ddd;
-  padding: 0.5em;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
 
 .education-table th {
-  background-color: #f2f2f2;
-  text-align: left;
+  background-color: #4a5568;
+  color: #fff;
+}
+
+.education-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
 /* Responsive width for pages */
