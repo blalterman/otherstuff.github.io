@@ -12,9 +12,9 @@ styling. The site can be deployed with GitHub Pages.
 ├── _config.yml        # Jekyll configuration
 ├── index.html         # Home page
 ├── about.md           # About page
-├── contact.html       # Contact page
-├── research.html      # Research page
-├── publications.html  # Publications page
+├── contact.md         # Contact page
+├── research.md      # Research page
+├── publications.md    # Publications page
 ├── README.md          # Project documentation
 └── AGENTS.md          # Guidelines for using AI assistance
 ```
