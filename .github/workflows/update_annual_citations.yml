@@ -32,6 +32,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git rebase origin/main
           git add _data/citations_by_year.json assets/images/citations_by_year.svg
           git commit -m "Update citation data and plot [auto]" || echo "No changes to commit"
-          git push
+          git push origin HEAD:main
