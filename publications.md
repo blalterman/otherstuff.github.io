@@ -7,7 +7,7 @@ classes: wide publications-page
 
 ## Statistics
 
-This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu/search/q=orcid%3A{{ site.ads_orcid }}&sort=date%20desc,%20bibcode%20desc&p_=0) and is updated weekly.
+This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu/search/q=orcid%3A{{ site.ads_orcid }}&sort=date%20desc,%20bibcode%20desc&p_=0){:target="_blank" rel="noopener"} and is updated weekly.
 
 - **h-index**: {{ site.data.ads_metrics["indicators"]["h"] }}
 - **Total papers**: {{ site.data.ads_metrics["basic stats"]["number of papers"] }}
