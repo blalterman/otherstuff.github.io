@@ -10,6 +10,17 @@ img {
   max-width: 100%;
 }
 
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.publications-page .page__inner-wrap {
+  max-width: 100%;
+  width: 100%;
+}
+
 @media (max-width: 600px) {
   body {
     font-size: 1rem;
@@ -18,5 +29,9 @@ img {
   }
   .publication-list li {
     font-size: 0.95rem;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
   }
 }
