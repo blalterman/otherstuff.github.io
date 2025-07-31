@@ -34,25 +34,6 @@ img {
   background-color: #005a99;
 }
 
-  .about-columns {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-.about-left,
-.about-right {
-  flex: 1;
-  min-width: 250px;
-}
-
-@media (max-width: 600px) {
-  .about-columns {
-    flex-direction: column;
-  }
-}
-
-
 .positions-table {
   width: 100%;
   border-collapse: collapse;
