@@ -4,6 +4,8 @@ title: Publications
 permalink: /publications/
 ---
 
+## Statistics 
+
 This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu) and is updated weekly.
 
 - **h-index**: {{ site.data.ads_metrics["indicators"]["h"] }}
@@ -13,7 +15,7 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 - **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
 
 
-## Publications
+## Publication List
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
 {% assign sorted_pubs_by_type = pubs_by_type | sort: "name" %}
@@ -25,20 +27,26 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
   {% for pub in pubs %}
     {% assign formatted_authors = "" %}
     {% for author in pub.authors %}
-      {% if author contains "Alterman" %}
-        {% assign author = author | replace: "Ben Alterman", "<strong>Ben Alterman</strong>" %}
-        {% assign author = author | replace: "Benjamin Alterman", "<strong>Benjamin Alterman</strong>" %}
-        {% assign author = author | replace: "Benjamin L. Alterman", "<strong>Benjamin L. Alterman</strong>" %}
-        {% assign author = author | replace: "B. Alterman", "<strong>B. Alterman</strong>" %}
-        {% assign author = author | replace: "B. L. Alterman", "<strong>B. L. Alterman</strong>" %}
-        {% assign author = author | replace: "Alterman, B.", "<strong>Alterman, B.</strong>" %}
-        {% assign author = author | replace: "Alterman, B. L.", "<strong>Alterman, B. L.</strong>" %}
-      {% endif %}
-      {% assign formatted_authors = formatted_authors | append: author %}
-      {% unless forloop.last %}
-        {% assign formatted_authors = formatted_authors | append: ", " %}
-      {% endunless %}
-    {% endfor %}
+  {% assign parts = author | split: " " %}
+  {% assign initials = "" %}
+  {% for part in parts offset:1 %}
+    {% assign initial = part | slice: 0, 1 %}
+    {% assign initials = initials | append: initial | append: "." %}
+    {% unless forloop.last %}{% assign initials = initials | append: " " %}{% endunless %}
+  {% endfor %}
+  {% assign lastname = parts[0] %}
+  {% assign formatted_name = lastname | append: ", " | append: initials %}
+
+  {% if formatted_name contains "Alterman" %}
+    {% assign formatted_name = formatted_name | replace: "Alterman, B.", "<strong>Alterman, B.</strong>" %}
+    {% assign formatted_name = formatted_name | replace: "Alterman, B. L.", "<strong>Alterman, B. L.</strong>" %}
+  {% endif %}
+
+  {% assign formatted_authors = formatted_authors | append: formatted_name %}
+  {% unless forloop.last %}
+    {% assign formatted_authors = formatted_authors | append: ", " %}
+  {% endunless %}
+{% endfor %}
     <li>
       <strong><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br>
       <span class="authors">{{ formatted_authors }}</span><br>
