@@ -86,7 +86,7 @@ for i, bibcode in enumerate(bibcodes, 1):
     for k in refereed_keys:
         refereed_citations[(bibcode, k)] = hist.get(k, {})
     for k in nonrefereed_keys:   
-        nonrefereed_citations[bibcode] = hist.get(k, {})
+        nonrefereed_citations[(bibcode, k)] = hist.get(k, {})
 
 # 	refereed_citations[(bibcode, k)] = hist.get(hist_keys["refereed"], {})
 #     nonrefereed_citations[bibcode] = hist.get(hist_keys["nonrefereed"], {})
@@ -114,8 +114,11 @@ nonref_counts = [nonrefereed_citations.get(y, 0) for y in all_years]
 print(all_years)
 print(ref_counts)
 print(nonref_counts)
+print(f"""
+Total Citations
+Refereed    : {sum(ref_counts)}
+Nonrefereed : {sum(nonref_counts)}""")
 
-# pdb.set_trace()
 
 # === Step 4: Save citation data to _data/citations_by_year.json
 data_output_dir = os.path.join("_data")
