@@ -18,43 +18,34 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 ## Publication List
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
-{% assign sorted_pubs_by_type = pubs_by_type | sort: "name" %}
+{% assign combined_groups = "" | split: "" %}
+{% assign other_groups = "" | split: "" %}
 
-{% for group in sorted_pubs_by_type %}
+{% for group in pubs_by_type %}
+  {% if group.name == "inproceedings" or group.name == "abstracts" %}
+    {% assign combined_groups = combined_groups | concat: group.items %}
+  {% else %}
+    {% assign other_groups = other_groups | push: group %}
+  {% endif %}
+{% endfor %}
+
+{% assign sorted_other_groups = other_groups | sort: "name" %}
+
+<h2>Conference Papers and Abstracts</h2>
+<ul class="publication-list">
+  {% assign combined_sorted = combined_groups | sort: "year" | reverse %}
+  {% for pub in combined_sorted %}
+    {% include publication_entry.liquid pub=pub %}
+  {% endfor %}
+</ul>
+
+{% for group in sorted_other_groups %}
   <h2>{{ group.name | capitalize }}</h2>
   <ul class="publication-list">
-  {% assign pubs = group.items | sort: "year" | reverse %}
-  {% for pub in pubs %}
-    {% assign formatted_authors = "" %}
-    {% for author in pub.authors %}
-  {% assign parts = author | split: " " %}
-  {% assign initials = "" %}
-  {% for part in parts offset:1 %}
-    {% assign initial = part | slice: 0, 1 %}
-    {% assign initials = initials | append: initial | append: "." %}
-    {% unless forloop.last %}{% assign initials = initials | append: " " %}{% endunless %}
-  {% endfor %}
-  {% assign lastname = parts[0] %}
-  {% assign formatted_name = lastname | append: ", " | append: initials %}
-
-  {% if formatted_name contains "Alterman" %}
-    {% assign formatted_name = "<strong>Alterman, B. L.</strong>" %}
-  {% endif %}
-
-  {% assign formatted_authors = formatted_authors | append: formatted_name %}
-  {% unless forloop.last %}
-    {% assign formatted_authors = formatted_authors | append: ", " %}
-  {% endunless %}
-{% endfor %}
-    <li>
-      <strong><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br>
-      <span class="authors">{{ formatted_authors }}</span><br>
-      <em>{{ pub.journal }}</em>, {{ pub.year | date: '%Y' }}.
-      {% if pub.citations and pub.citations > 0 %}
-        <span class="citations"> Citations: {{ pub.citations }}</span>
-      {% endif %}
-    </li>
-  {% endfor %}
+    {% assign pubs = group.items | sort: "year" | reverse %}
+    {% for pub in pubs %}
+      {% include publication_entry.liquid pub=pub %}
+    {% endfor %}
   </ul>
 {% endfor %}
 
