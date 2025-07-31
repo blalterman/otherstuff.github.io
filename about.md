@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-## About
-
 You can find my research profiles and publications at the links below:
 
 - [ORCID: 0000-0001-6673-3432](https://orcid.org/0000-0001-6673-3432)
