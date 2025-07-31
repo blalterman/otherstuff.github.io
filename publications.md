@@ -8,11 +8,11 @@ permalink: /publications/
 
 This page is automatically generated using citation data from [NASA ADS](https://ui.adsabs.harvard.edu).
 
-- **h-index**: {{ site.data.ads_metrics["citation stats"]["h index"] }}
-- **Total number of papers**: {{ site.data.ads_metrics["citation stats"]["total number of papers"] }}
+- **h-index**: {{ site.data.ads_metrics["indicators"]["h"] }}
+- **Total number of papers**: {{ site.data.ads_metrics["basic stats"]["number of papers"] }}
 - **Total number of citations**: {{ site.data.ads_metrics["citation stats"]["total number of citations"] }}
-- **Refereed papers**: {{ site.data.ads_metrics["citation stats"]["number of refereed papers"] }}
-- **Refereed citations**: {{ site.data.ads_metrics["citation stats"]["number of refereed citations"] }}
+- **Refereed papers**: {{ site.data.ads_metrics["basic stats refereed"]["number of papers"] }}
+- **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
 
 ## Pretty table
 
@@ -48,11 +48,11 @@ This page is automatically generated using citation data from [NASA ADS](https:/
   <tbody>
     <tr>
       <th>Total papers</th>
-      <td>{{ site.data.ads_metrics["citation stats"]["total number of papers"] }}</td>
+      <td>{{ site.data.ads_metrics["basic stats"]["number of papers"] }}</td>
     </tr>
     <tr>
       <th>Refereed papers</th>
-      <td>{{ site.data.ads_metrics["citation stats"]["number of refereed papers"] }}</td>
+      <td>{{ site.data.ads_metrics["basic stats refereed"]["number of papers"] }}</td>
     </tr>
     <tr>
       <th>Total citations</th>
@@ -60,11 +60,11 @@ This page is automatically generated using citation data from [NASA ADS](https:/
     </tr>
     <tr>
       <th>Refereed citations</th>
-      <td>{{ site.data.ads_metrics["citation stats"]["number of refereed citations"] }}</td>
+      <td>{{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}</td>
     </tr>
     <tr>
       <th>h-index</th>
-      <td>{{ site.data.ads_metrics["citation stats"]["h index"] }}</td>
+      <td>{{ site.data.ads_metrics["indicators"]["h"] }}</td>
     </tr>
   </tbody>
 </table>
