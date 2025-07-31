@@ -23,19 +23,23 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
   {% assign entries = site.data.ads_publications | where: "entry_type", type %}
   {% if entries.size > 0 %}
 
-  {% capture label %}
-    {% case type %}
-      {% when "phdthesis" %}PhD Thesis
-      {% when "article" %}Peer Reviewed Articles
-      {% when "abstract" %}Conference Presentations
-      {% when "dataset" %}Dataset
-      {% when "eprint" %}Pre-Print
-      {% when "techreport" %}White Papers
-      {% else %}Other
-    {% endcase %}
-  {% endcapture %}
+  {% if type == "phdthesis" %}
+    {% assign label = "PhD Thesis" %}
+  {% elsif type == "article" %}
+    {% assign label = "Peer Reviewed Articles" %}
+  {% elsif type == "abstract" %}
+    {% assign label = "Conference Presentations" %}
+  {% elsif type == "dataset" %}
+    {% assign label = "Dataset" %}
+  {% elsif type == "eprint" %}
+    {% assign label = "Pre-Print" %}
+  {% elsif type == "techreport" %}
+    {% assign label = "White Papers" %}
+  {% else %}
+    {% assign label = "Other" %}
+  {% endif %}
 
-  ### {{ label | strip }}
+  ### {{ label }}
 
   <ul class="pub-list">
   {% for pub in entries %}
