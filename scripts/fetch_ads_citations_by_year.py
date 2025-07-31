@@ -40,9 +40,16 @@ for i, bibcode in enumerate(bibcodes, 1):
         nonrefereed_citations[int(year)] += count
 
 # === Step 3: Align years and prepare data
+print(refereed_citations)
+print(nonrefereed_citations)
+
 all_years = sorted(set(refereed_citations) | set(nonrefereed_citations))
 ref_counts = [refereed_citations.get(y, 0) for y in all_years]
 nonref_counts = [nonrefereed_citations.get(y, 0) for y in all_years]
+
+print(all_years)
+print(ref_counts)
+print(nonref_counts)
 
 # === Step 4: Save citation data to _data/citations_by_year.json
 data_output_dir = os.path.join("_data")
