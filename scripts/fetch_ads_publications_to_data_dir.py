@@ -3,11 +3,11 @@ import os
 import json
 from datetime import datetime
 
-# Set ORCID and load API token
-ORCID = "0000-0001-6673-3432"
+# Read ORCID and API token from environment variables
+ORCID = os.getenv("ADS_ORCID")
 token = os.getenv("ADS_DEV_KEY")
-if not token:
-    raise EnvironmentError("ADS_DEV_KEY environment variable not set.")
+if not ORCID or not token:
+    raise EnvironmentError("ADS_ORCID and ADS_DEV_KEY must be set in the environment.")
 
 # Fields to request from ADS
 fields = [

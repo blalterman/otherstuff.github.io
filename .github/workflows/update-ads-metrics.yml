@@ -26,8 +26,9 @@ jobs:
       - name: Run metrics update script
         env:
           ADS_DEV_KEY: ${{ secrets.ADS_DEV_KEY }}
+          ADS_ORCID: ${{ secrets.ADS_ORCID }}
         run: |
-          python scripts/fetch_ads_metrics_to_data_dir.py --orcid 0000-0001-6673-3432
+          python scripts/fetch_ads_metrics_to_data_dir.py --orcid $ADS_ORCID
 
       - name: Pull latest changes
         run: |
