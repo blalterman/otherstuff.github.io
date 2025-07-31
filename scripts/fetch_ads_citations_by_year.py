@@ -21,8 +21,6 @@ import os
 import json
 
 
-import pdb
-
 # === Read ORCID and API token from environment variables ===
 ORCID_ID = os.getenv("ADS_ORCID")
 ADS_DEV_KEY = os.getenv("ADS_DEV_KEY")
