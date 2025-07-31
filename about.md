@@ -13,7 +13,7 @@ Ben is a heliophysics generalist with broad expertise in the thermal and suprath
 
 At heart, Ben is driven by the big questions: What powers the solar wind? How do kinetic signatures reflect global solar evolution? And how do small-scale processes connect to the larger heliospheric system? He brings a dynamic interest in our Sun, humanity’s place in the Universe, and the ways solar variability influences life on Earth through space weather. A Fellow of The Explorers Club and an active member of the heliophysics community, he approaches these challenges with curiosity, technical depth, and creative thinking.
 
-You can find my research profiles and publications at the links below:
+You can find my research profiles at the links below. My publications are available [here](/publications/):
 
 - <img src="/assets/images/orcid/ORCID-iD_icon_24x24.png" alt="ORCID logo" width="20" height="20"> [ORCID](https://orcid.org/{{ site.ads_orcid }})
 - <img src="/assets/images/ads/ads.svg" alt="NASA ADS logo" width="20" height="20"> [NASA ADS](https://ui.adsabs.harvard.edu/search/q=orcid%3A{{ site.ads_orcid }}&sort=date%20desc,%20bibcode%20desc&p_=0)
