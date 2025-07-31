@@ -20,6 +20,10 @@ from collections import defaultdict
 import os
 import json
 
+import pandas as pd
+
+import pdb
+
 # === Read ORCID and API token from environment variables ===
 ORCID_ID = os.getenv("ADS_ORCID")
 ADS_DEV_KEY = os.getenv("ADS_DEV_KEY")
@@ -31,55 +35,97 @@ ads.config.token = ADS_DEV_KEY
 
 # === Step 1: Get all bibcodes ===
 print("Querying NASA ADS for publications...")
-results = ads.SearchQuery(orcid=ORCID_ID, fl=["bibcode"], rows=2000)
-bibcodes = [paper.bibcode for paper in results]
+# results = ads.SearchQuery(orcid=ORCID_ID, fl=["bibcode"], rows=2000)
+# bibcodes = [paper.bibcode for paper in results]
 
-print(f"Found {len(bibcodes)} papers.")
+results = ads.SearchQuery(orcid=ORCID_ID, fl=["bibcode", "property"], rows=2000)
+
+bibcodes = []
+is_refereed = {}
+for paper in results:
+    bibcodes.append(paper.bibcode)
+    props = getattr(paper, "property", []) or []
+    is_refereed[paper.bibcode] = "REFEREED" in props
+
+print(f"Found {len(bibcodes)} papers ({sum([v for k, v in is_refereed.items() if v])} refereed).")
 
 # === Step 2: Query citation histogram by year ===
 headers = {"Authorization": f"Bearer {ADS_DEV_KEY}"}
-refereed_citations = defaultdict(int)
-nonrefereed_citations = defaultdict(int)
+refereed_citations = dict()
+nonrefereed_citations = dict()
+
+keys_to_get_citations = {"refereed": 
+                     {"refereed": "refereed to refereed", 
+                     "nonrefereed": "refereed to nonrefereed"},
+                     "nonrefereed": 
+                     {"refereed": "nonrefereed to refereed", 
+                     "nonrefereed": "nonrefereed to nonrefereed"},
+                     }
 
 print("Downloading citation data by year...")
 for i, bibcode in enumerate(bibcodes, 1):
     url = f"https://api.adsabs.harvard.edu/v1/metrics/{bibcode}"
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers)    
     if response.status_code != 200:
         print(f"Failed to get metrics for ({i}) {bibcode}")
         continue
     data = response.json()
     hist = data.get("histograms", {}).get("citations", {})
-    print(i, bibcode)
-    print(hist)
-    for year, count in hist.get("refereed", {}).items():
-        refereed_citations[int(year)] += count
-    for year, count in hist.get("nonrefereed", {}).items():
-        nonrefereed_citations[int(year)] += count
+#     print(i, bibcode)
+#     print(hist)
+#     print(is_refereed[bibcode])
+    hist_keys = keys_to_get_citations["refereed" if is_refereed[bibcode] else "nonrefereed"]
+    
+    refereed_keys = [k for k in hist.keys() if k.endswith("to refereed")]
+    nonrefereed_keys = [k for k in hist.keys() if k.endswith("to nonrefereed")]
+    
+    for k in refereed_keys:
+        refereed_citations[(bibcode, k)] = hist.get(k, {})
+    for k in nonrefereed_keys:   
+        nonrefereed_citations[bibcode] = hist.get(k, {})
+
+# 	refereed_citations[(bibcode, k)] = hist.get(hist_keys["refereed"], {})
+#     nonrefereed_citations[bibcode] = hist.get(hist_keys["nonrefereed"], {})
+    
+#     for year, count in hist.get(hist_keys["refereed"], {}).items():
+#         refereed_citations[int(year)] += count
+#     for year, count in hist.get(hist_keys["nonrefereed"], {}).items():
+#         nonrefereed_citations[int(year)] += count
+
+refereed_citations = pd.DataFrame.from_dict(refereed_citations)
+nonrefereed_citations = pd.DataFrame.from_dict(nonrefereed_citations)
 
 # === Step 3: Align years and prepare data
 print(refereed_citations)
 print(nonrefereed_citations)
 
-all_years = sorted(set(refereed_citations) | set(nonrefereed_citations))
-ref_counts = [refereed_citations.get(y, 0) for y in all_years]
-nonref_counts = [nonrefereed_citations.get(y, 0) for y in all_years]
+# all_years = sorted(set(refereed_citations) | set(nonrefereed_citations))
+# ref_counts = [refereed_citations.get(y, 0) for y in all_years]
+# nonref_counts = [nonrefereed_citations.get(y, 0) for y in all_years]
 
-print(all_years)
-print(ref_counts)
-print(nonref_counts)
+ref_counts = refereed_citations.sum(axis=1)
+nonref_counts = nonrefereed_citations.sum(axis=1)
+all_counts = pd.concat({"refereed": ref_counts, "nonrefereed": nonref_counts}, axis=1)
+
+print(all_counts)
+# print(ref_counts)
+# print(nonref_counts)
+
+# pdb.set_trace()
 
 # === Step 4: Save citation data to _data/citations_by_year.json
 data_output_dir = os.path.join("_data")
 os.makedirs(data_output_dir, exist_ok=True)
 json_output_path = os.path.join(data_output_dir, "citations_by_year.json")
 
-with open(json_output_path, "w") as f:
-    json.dump(
-        {"years": all_years, "refereed": ref_counts, "nonrefereed": nonref_counts},
-        f,
-        indent=2,
-    )
+all_counts.to_json(json_output_path)
+
+# with open(json_output_path, "w") as f:
+#     json.dump(
+#         {"years": all_years, "refereed": ref_counts, "nonrefereed": nonref_counts},
+#         f,
+#         indent=2,
+#     )
 
 print(f"Citation data saved to {json_output_path}")
 
