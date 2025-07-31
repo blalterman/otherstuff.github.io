@@ -39,8 +39,9 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 </ul>
 
 {% for group in sorted_other_groups %}
-
-{% if group.name == "techreport" %}
+{% if group.name == "article" %}
+<h2>Refereed Publications</h2>
+{% elsif group.name == "techreport" %}
 <h2>White Papers</h2>
 {% elsif group.name == "eprint" %}
 <h2>Pre-Prints</h2>
