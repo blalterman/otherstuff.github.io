@@ -38,7 +38,9 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
     <strong><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br>
     <span class="authors">{{ formatted_authors }}</span><br>
     <em>{{ pub.journal }}</em>, {{ pub.year }}.
-    <span class="citations">Citations: {{ pub.citations }}</span>
+    {% if pub.citations and pub.citations > 0 %}
+      <span class="citations"> Citations: {{ pub.citations }}</span>
+    {% endif %}
   </li>
 {% endfor %}
 </ul>
