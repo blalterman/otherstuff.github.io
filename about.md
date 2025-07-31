@@ -2,9 +2,14 @@
 layout: single
 title: About
 permalink: /about/
-description: Ben Alterman is a NASA Research Astrophysicist studying the solar wind, space weather, and humanity’s place in the heliosphere using data from Wind, ACE, Parker Solar Probe, and Solar Orbiter.
+description: B. L. Alterman is a NASA Research Astrophysicist studying the solar wind, space weather, and humanity’s place in the heliosphere using data from Wind, ACE, Parker Solar Probe, and Solar Orbiter.
 author: B. L. Alterman
 image: /assets/images/headshot.jpg
+keywords:
+  - B. L. Alterman
+  - heliophysics
+  - solar wind
+  - space weather
 ---
 
 <img src="/assets/images/headshot.jpg" alt="Ben Alterman headshot" class="about-headshot" />

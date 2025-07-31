@@ -3,6 +3,12 @@ layout: single
 title: Publications
 permalink: /publications/
 classes: wide publications-page
+description: Comprehensive list of B. L. Alterman's publications with citation metrics from NASA ADS.
+keywords:
+  - publications
+  - research papers
+  - NASA ADS
+  - heliophysics
 ---
 
 ## Statistics
