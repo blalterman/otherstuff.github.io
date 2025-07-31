@@ -3,6 +3,7 @@
 ## Purpose
 
 This file documents how AI development assistants (e.g., GitHub Copilot, OpenAI Codex, ChatGPT) are used in building and maintaining this personal research website. These agents support the human developer by accelerating repetitive tasks, suggesting design patterns, and assisting with content generation—while all major decisions and final edits remain human-reviewed.
+The website is built using the Jekyll framework.
 
 ---
 
