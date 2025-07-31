@@ -17,97 +17,46 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 ## Publication List
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
-{% assign presentations = "" | split: "" %}
-{% assign proceedings = "" | split: "" %}
-{% assign other_groups = "" | split: "" %}
-
-{% for group in pubs_by_type %}
-  {% if group.name == "abstract" %}
-    {% assign presentations = group.items %}
-  {% elsif group.name == "inproceedings" %}
-    {% assign proceedings = group.items %}
-  {% else %}
-    {% assign other_groups = other_groups | push: group %}
-  {% endif %}
-{% endfor %}
-
 {% assign custom_order = "phdthesis,article,inproceedings,abstract,techreport,eprint" | split: "," %}
 
 {% for type in custom_order %}
-  {% assign group = pubs_by_type | where: "name", type | first %}
-  {% if group %}
-    {% if group.name == "phdthesis" %}
-      <h2>PhD Thesis</h2>
-    {% elsif group.name == "article" %}
-      <h2>Refereed Publications</h2>
-    {% elsif group.name == "inproceedings" %}
-      <h2>Conference Proceedings</h2>
-    {% elsif group.name == "abstract" %}
-      <h2>Conference Presentations</h2>
-    {% elsif group.name == "techreport" %}
-      <h2>White Papers</h2>
-    {% elsif group.name == "eprint" %}
-      <h2>Pre-Prints</h2>
-    {% else %}
-      <h2>{{ group.name | capitalize }}</h2>
-    {% endif %}
+{% assign group = pubs_by_type | where: "name", type | first %}
+{% if group %}
+{% if group.name == "phdthesis" %}
 
-    <ul class="publication-list">
-      {% assign pubs = group.items | sort: "year" | reverse %}
-      {% for pub in pubs %}
-        {% include publication_entry.liquid pub=pub %}
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endfor %}
-    </ul>
-  {% endif %}
-{% endfor %}
-</ul>
-
-<h2>Conference Proceedings</h2>
-<ul class="publication-list">
-  {% assign proceedings_sorted = proceedings | sort: "year" | reverse %}
-  {% for pub in proceedings_sorted %}
-    {% include publication_entry.liquid pub=pub %}
-  {% endfor %}
-</ul>
-
-{% for group in sorted_other_groups %}
-{% if group.name == "article" %}
+<h2>PhD Thesis</h2>
+{% elsif group.name == "article" %}
 <h2>Refereed Publications</h2>
+{% elsif group.name == "inproceedings" %}
+<h2>Conference Proceedings</h2>
+{% elsif group.name == "abstract" %}
+<h2>Conference Presentations</h2>
 {% elsif group.name == "techreport" %}
 <h2>White Papers</h2>
 {% elsif group.name == "eprint" %}
 <h2>Pre-Prints</h2>
-{% elsif group.name == "phdthesis" %}
-<h2>PhD Thesis</h2>
 {% else %}
 <h2>{{ group.name | capitalize }}</h2>
 {% endif %}
 
-  <ul class="publication-list">
+<div class="publication-table-wrapper">
+<table class="publication-table">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Title</th>
+      <th>Authors</th>
+      <th>Journal</th>
+      <th>Citations</th>
+    </tr>
+  </thead>
+  <tbody>
     {% assign pubs = group.items | sort: "year" | reverse %}
     {% for pub in pubs %}
-      {% include publication_entry.liquid pub=pub %}
+      {% include publication_row.liquid pub=pub %}
     {% endfor %}
-  </ul>
+  </tbody>
+</table>
+</div>
+  {% endif %}
 {% endfor %}
-
-<style>
-.publication-list {
-  list-style-type: disc;
-  padding-left: 1.5em;
-}
-.publication-list li {
-  margin-bottom: 1.2em;
-  line-height: 1.5em;
-}
-.publication-list a {
-  text-decoration: none;
-  color: #0645ad;
-}
-.publication-list a:hover {
-  text-decoration: underline;
-}
-</style>
