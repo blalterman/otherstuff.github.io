@@ -17,23 +17,34 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 ## Publication List
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
-{% assign combined_groups = "" | split: "" %}
+{% assign presentations = "" | split: "" %}
+{% assign proceedings = "" | split: "" %}
 {% assign other_groups = "" | split: "" %}
 
 {% for group in pubs_by_type %}
-{% if group.name == "inproceedings" or group.name == "abstracts" %}
-{% assign combined_groups = combined_groups | concat: group.items %}
-{% else %}
-{% assign other_groups = other_groups | push: group %}
-{% endif %}
+  {% if group.name == "abstract" %}
+    {% assign presentations = group.items %}
+  {% elsif group.name == "inproceedings" %}
+    {% assign proceedings = group.items %}
+  {% else %}
+    {% assign other_groups = other_groups | push: group %}
+  {% endif %}
 {% endfor %}
 
 {% assign sorted_other_groups = other_groups | sort: "name" %}
 
-<h2>Conference Papers and Abstracts</h2>
+<h2>Conference Presentations</h2>
 <ul class="publication-list">
-  {% assign combined_sorted = combined_groups | sort: "year" | reverse %}
-  {% for pub in combined_sorted %}
+  {% assign presentations_sorted = presentations | sort: "year" | reverse %}
+  {% for pub in presentations_sorted %}
+    {% include publication_entry.liquid pub=pub %}
+  {% endfor %}
+</ul>
+
+<h2>Conference Proceedings</h2>
+<ul class="publication-list">
+  {% assign proceedings_sorted = proceedings | sort: "year" | reverse %}
+  {% for pub in proceedings_sorted %}
     {% include publication_entry.liquid pub=pub %}
   {% endfor %}
 </ul>
