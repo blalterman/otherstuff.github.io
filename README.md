@@ -11,9 +11,9 @@ styling. The site can be deployed with GitHub Pages.
 /          # Repository root
 ├── _config.yml        # Jekyll configuration
 ├── index.html         # Home page
-├── about.html         # About page
+├── about.md           # About page
 ├── contact.md         # Contact page
-├── research.html      # Research page
+├── research.md      # Research page
 ├── publications.md    # Publications page
 ├── README.md          # Project documentation
 └── AGENTS.md          # Guidelines for using AI assistance
