@@ -4,7 +4,7 @@ title: Publications
 permalink: /publications/
 ---
 
-## Statistics 
+## Statistics
 
 This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu) and is updated weekly.
 
@@ -14,7 +14,6 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 - **Refereed papers**: {{ site.data.ads_metrics["basic stats refereed"]["number of papers"] }}
 - **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
 
-
 ## Publication List
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
@@ -22,11 +21,11 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 {% assign other_groups = "" | split: "" %}
 
 {% for group in pubs_by_type %}
-  {% if group.name == "inproceedings" or group.name == "abstracts" %}
-    {% assign combined_groups = combined_groups | concat: group.items %}
-  {% else %}
-    {% assign other_groups = other_groups | push: group %}
-  {% endif %}
+{% if group.name == "inproceedings" or group.name == "abstracts" %}
+{% assign combined_groups = combined_groups | concat: group.items %}
+{% else %}
+{% assign other_groups = other_groups | push: group %}
+{% endif %}
 {% endfor %}
 
 {% assign sorted_other_groups = other_groups | sort: "name" %}
@@ -40,7 +39,12 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 </ul>
 
 {% for group in sorted_other_groups %}
-  <h2>{{ group.name | capitalize }}</h2>
+{% if group.name == "techreport" %}
+<h2>White Papers</h2>
+{% else %}
+<h2>{{ group.name | capitalize }}</h2>
+{% endif %}
+
   <ul class="publication-list">
     {% assign pubs = group.items | sort: "year" | reverse %}
     {% for pub in pubs %}
