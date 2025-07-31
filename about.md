@@ -67,4 +67,5 @@ You can find my research profiles at the links below. My publications are availa
     {% endfor %}
 </tbody>
 </table>
+</div>
 </section>
