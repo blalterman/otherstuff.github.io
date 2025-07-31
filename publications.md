@@ -4,8 +4,6 @@ title: Publications
 permalink: /publications/
 ---
 
-## Statistics 
-
 This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu) and is updated weekly.
 
 - **h-index**: {{ site.data.ads_metrics["indicators"]["h"] }}
@@ -15,50 +13,58 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 - **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
 
 
-## Publication List
+## Publications
 
-{% assign type_order = "phdthesis,article,abstract,dataset,eprint,techreport" | split: "," %}
+{% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
+{% assign sorted_pubs_by_type = pubs_by_type | sort: "name" %}
 
-{% for type in type_order %}
-  {% assign entries = site.data.ads_publications | where: "entry_type", type %}
-  {% if entries.size > 0 %}
-
-  {% if type == "phdthesis" %}
-    {% assign label = "PhD Thesis" %}
-  {% elsif type == "article" %}
-    {% assign label = "Peer Reviewed Articles" %}
-  {% elsif type == "abstract" %}
-    {% assign label = "Conference Presentations" %}
-  {% elsif type == "dataset" %}
-    {% assign label = "Dataset" %}
-  {% elsif type == "eprint" %}
-    {% assign label = "Pre-Print" %}
-  {% elsif type == "techreport" %}
-    {% assign label = "White Papers" %}
-  {% else %}
-    {% assign label = "Other" %}
-  {% endif %}
-
-  ### {{ label }}
-
-  <ul class="pub-list">
-  {% for pub in entries %}
+{% for group in sorted_pubs_by_type %}
+  <h2>{{ group.name | capitalize }}</h2>
+  <ul class="publication-list">
+  {% assign pubs = group.items | sort: "year" | reverse %}
+  {% for pub in pubs %}
+    {% assign formatted_authors = "" %}
+    {% for author in pub.authors %}
+      {% if author contains "Alterman" %}
+        {% assign author = author | replace: "Ben Alterman", "<strong>Ben Alterman</strong>" %}
+        {% assign author = author | replace: "Benjamin Alterman", "<strong>Benjamin Alterman</strong>" %}
+        {% assign author = author | replace: "Benjamin L. Alterman", "<strong>Benjamin L. Alterman</strong>" %}
+        {% assign author = author | replace: "B. Alterman", "<strong>B. Alterman</strong>" %}
+        {% assign author = author | replace: "B. L. Alterman", "<strong>B. L. Alterman</strong>" %}
+        {% assign author = author | replace: "Alterman, B.", "<strong>Alterman, B.</strong>" %}
+        {% assign author = author | replace: "Alterman, B. L.", "<strong>Alterman, B. L.</strong>" %}
+      {% endif %}
+      {% assign formatted_authors = formatted_authors | append: author %}
+      {% unless forloop.last %}
+        {% assign formatted_authors = formatted_authors | append: ", " %}
+      {% endunless %}
+    {% endfor %}
     <li>
-      {% assign authors = pub.authors | join: ", " %}
-      {% assign bolded_authors = authors %}
-      {% assign variants = "Alterman, B. L.|B. Alterman|Benjamin Alterman|Benjamin L. Alterman" | split: "|" %}
-      {% for variant in variants %}
-        {% assign bolded_authors = bolded_authors | replace: variant, "<strong>" | append: variant | append: "</strong>" %}
-      {% endfor %}
-      {{ bolded_authors }}.
-      "{{ pub.title }}."
-      <em>{{ pub.journal }}</em>,
-      {{ pub.year }}.
-      {% if pub.citation_count > 0 %}Cited {{ pub.citation_count }} times.{% endif %}
-      {% if pub.url %} [Link]({{ pub.url }}){% endif %}
+      <strong><a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br>
+      <span class="authors">{{ formatted_authors }}</span><br>
+      <em>{{ pub.journal }}</em>, {{ pub.year }}.
+      {% if pub.citations and pub.citations > 0 %}
+        <span class="citations"> Citations: {{ pub.citations }}</span>
+      {% endif %}
     </li>
   {% endfor %}
   </ul>
-
-  {% endif %}
 {% endfor %}
+
+<style>
+.publication-list {
+  list-style-type: disc;
+  padding-left: 1.5em;
+}
+.publication-list li {
+  margin-bottom: 1.2em;
+  line-height: 1.5em;
+}
+.publication-list a {
+  text-decoration: none;
+  color: #0645ad;
+}
+.publication-list a:hover {
+  text-decoration: underline;
+}
+</style>
