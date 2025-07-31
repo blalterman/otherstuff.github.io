@@ -29,35 +29,37 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
   {% endfor %}
 
   {% if group %}
-    {% if group.name == "phdthesis" %}
     
-      ## PhD Thesis
-      
-    {% elsif group.name == "article" %}
-    
-      ## Refereed Publications
-      
-    {% elsif group.name == "inproceedings" %}
-    
-      ## Conference Proceedings
-      
-    {% elsif group.name == "abstract" %}
-    
-      ## Conference Presentations
-      
-    {% elsif group.name == "techreport" %}
-    
-      ## White Papers
-      
-    {% elsif group.name == "eprint" %}
-    
-      ## Pre-Prints
-      
-    {% else %}
-    
-      ## {{ group.name | capitalize }}
-      
-    {% endif %}
+{% if group.name == "phdthesis" %}
+
+<h2>PhD Thesis</h2>
+
+{% elsif group.name == "article" %}
+
+<h2>Refereed Publications</h2>
+
+{% elsif group.name == "inproceedings" %}
+
+<h2>Conference Proceedings</h2>
+
+{% elsif group.name == "abstract" %}
+
+<h2>Conference Presentations</h2>
+
+{% elsif group.name == "techreport" %}
+
+<h2>White Papers</h2>
+
+{% elsif group.name == "eprint" %}
+
+<h2>Pre-Prints</h2>
+
+{% else %}
+
+<h2>{{ group.name | capitalize }}</h2>
+
+{% endif %}
+
 
     <ul class="publication-list">
       {% assign pubs = group.items | sort: "year" | reverse %}
