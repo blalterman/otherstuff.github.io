@@ -29,10 +29,15 @@ jobs:
         run: |
           python scripts/fetch_ads_metrics_to_data_dir.py --orcid 0000-0001-6673-3432
 
+      - name: Pull latest changes
+        run: |
+          git fetch origin
+          git pull origin main --ff-only
+
       - name: Commit updated metrics file
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add _data/ads_metrics.json
           git commit -m "Update ADS metrics [automated]" || echo "No changes to commit"
-          git push
+          git push origin main
