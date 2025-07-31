@@ -10,8 +10,8 @@ classes: wide publications-page
 This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0001-6673-3432&sort=date%20desc,%20bibcode%20desc&p_=0) and is updated weekly.
 
 - **h-index**: {{ site.data.ads_metrics["indicators"]["h"] }}
-- **Total number of papers**: {{ site.data.ads_metrics["basic stats"]["number of papers"] }}
-- **Total number of citations**: {{ site.data.ads_metrics["citation stats"]["total number of citations"] }}
+- **Total papers**: {{ site.data.ads_metrics["basic stats"]["number of papers"] }}
+- **Total citations**: {{ site.data.ads_metrics["citation stats"]["total number of citations"] }}
 - **Refereed papers**: {{ site.data.ads_metrics["basic stats refereed"]["number of papers"] }}
 - **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
 
