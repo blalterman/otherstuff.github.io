@@ -32,41 +32,42 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
     
 {% if group.name == "phdthesis" %}
 
-<h2>PhD Thesis</h2>
+<h3>PhD Thesis</h3>
 
 {% elsif group.name == "article" %}
 
-<h2>Refereed Publications</h2>
+<h3>Refereed Publications</h3>
 
 {% elsif group.name == "inproceedings" %}
 
-<h2>Conference Proceedings</h2>
+<h3>Conference Proceedings</h3>
 
 {% elsif group.name == "abstract" %}
 
-<h2>Conference Presentations</h2>
+<h3>Conference Presentations</h3>
 
 {% elsif group.name == "techreport" %}
 
-<h2>White Papers</h2>
+<h3>White Papers</h3>
 
 {% elsif group.name == "eprint" %}
 
-<h2>Pre-Prints</h2>
+<h3>Pre-Prints</h3>
 
 {% else %}
 
-<h2>{{ group.name | capitalize }}</h2>
+<h3>{{ group.name | capitalize }}</h3>
 
 {% endif %}
 
 
-    <ol class="publication-list">
-      {% assign pubs = group.items | sort: "year" | reverse %}
-      {% for pub in pubs %}
-        {% include publication_entry.liquid pub=pub %}
-      {% endfor %}
-    </ol>
+<ol class="publication-list">
+  {% assign pubs = group.items | sort: "year" | reverse %}
+  {% for pub in pubs %}
+    {% include publication_entry.liquid pub=pub %}
+  {% endfor %}
+</ol>
+    
   {% endif %}
 {% endfor %}
 
