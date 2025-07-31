@@ -4,6 +4,8 @@ title: Publications
 permalink: /publications/
 ---
 
+## Statistics 
+
 This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu) and is updated weekly.
 
 - **h-index**: {{ site.data.ads_metrics["indicators"]["h"] }}
@@ -13,7 +15,7 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 - **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
 
 
-## Publications
+## Publication List
 
 {% assign pubs_by_type = site.data.ads_publications | group_by: "publication_type" %}
 {% assign sorted_pubs_by_type = pubs_by_type | sort: "name" %}
