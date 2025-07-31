@@ -4,7 +4,7 @@ title: Publications
 permalink: /publications/
 ---
 
-## Statistics 
+## Statistics
 
 This page is automatically generated using data from [NASA ADS](https://ui.adsabs.harvard.edu) and is updated weekly.
 
@@ -13,7 +13,6 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 - **Total number of citations**: {{ site.data.ads_metrics["citation stats"]["total number of citations"] }}
 - **Refereed papers**: {{ site.data.ads_metrics["basic stats refereed"]["number of papers"] }}
 - **Refereed citations**: {{ site.data.ads_metrics["citation stats refereed"]["total number of citations"] }}
-
 
 ## Publication List
 
@@ -51,7 +50,15 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 </ul>
 
 {% for group in sorted_other_groups %}
-  <h2>{{ group.name | capitalize }}</h2>
+
+{% if group.name == "techreport" %}
+<h2>White Papers</h2>
+{% elseif group.name == "eprint" %}
+<h2>Pre-Prints</h2>
+{% else %}
+<h2>{{ group.name | capitalize }}</h2>
+{% endif %}
+
   <ul class="publication-list">
     {% assign pubs = group.items | sort: "year" | reverse %}
     {% for pub in pubs %}
