@@ -1,0 +1,37 @@
+name: Update NASA ADS Citations Plot and Data
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # every Monday at 00:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update-citations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          pip install ads requests matplotlib
+
+      - name: Run citation update script
+        env:
+          ADS_ORCID: ${{ secrets.ADS_ORCID }}
+          ADS_DEV_KEY: ${{ secrets.ADS_DEV_KEY }}
+        run: python scripts/citations_by_year.py
+
+      - name: Commit and push updated data and plot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/citations_by_year.json assets/images/citations_by_year.svg
+          git commit -m "Update citation data and plot [auto]" || echo "No changes to commit"
+          git push
