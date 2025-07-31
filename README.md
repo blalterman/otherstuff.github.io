@@ -1,19 +1,22 @@
 # blalterman.github.io
 
 This repository hosts my personal research website built with
-[Jekyll](https://jekyllrb.com/), the static site generator used by
-GitHub Pages.
+[Jekyll](https://jekyllrb.com/), using the
+[Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) theme for
+styling. The site can be deployed with GitHub Pages.
 
 ## Directory layout
 
 ```
 /          # Repository root
-├── _config.yml  # Jekyll configuration (to be added)
-├── _posts/      # Blog posts (optional)
-├── index.html   # Home page
-├── style.css    # Site styling (optional)
-├── README.md    # Project documentation
-└── AGENTS.md    # Guidelines for using AI assistance
+├── _config.yml        # Jekyll configuration
+├── index.html         # Home page
+├── about.html         # About page
+├── contact.html       # Contact page
+├── research.html      # Research page
+├── publications.html  # Publications page
+├── README.md          # Project documentation
+└── AGENTS.md          # Guidelines for using AI assistance
 ```
 
 Pages and posts are generated via Jekyll templates. The `AGENTS.md` file
