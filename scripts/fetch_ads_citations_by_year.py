@@ -34,6 +34,8 @@ for i, bibcode in enumerate(bibcodes, 1):
         print(f"Failed to get metrics for {bibcode}")
         continue
     hist = response.json().get("citation histogram", {})
+    print(i, bibcode)
+    print(hist)
     for year, count in hist.get("refereed", {}).items():
         refereed_citations[int(year)] += count
     for year, count in hist.get("nonrefereed", {}).items():
