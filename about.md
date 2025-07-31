@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-## About
-
 You can find my research profiles and publications at the links below:
 
 <ul class="profile-links">

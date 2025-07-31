@@ -5,11 +5,6 @@ img {
   height: auto;
 }
 
-.publication-list {
-  width: 100%;
-  max-width: 100%;
-}
-
 .profile-links {
   list-style: none;
   padding-left: 0;
@@ -45,6 +40,21 @@ img {
 
 .profile-links li.github {
   background-image: url("/assets/images/github/github-mark.svg");
+  
+.publication-list {
+  width: 100%;
+  max-width: 100%;
+}
+  
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.publications-page .page__inner-wrap {
+  max-width: 100%;
+  width: 100%;
 }
 
 @media (max-width: 600px) {
@@ -56,4 +66,21 @@ img {
   .publication-list li {
     font-size: 0.95rem;
   }
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  background-color: #007acc;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #005a99;
 }
