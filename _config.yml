@@ -1,2 +1,9 @@
+# Jekyll configuration
+
+# Site settings
+title: B. L. Alterman
 baseurl: ""
-title: blalterman
+url: ""
+
+# Build settings
+markdown: kramdown
