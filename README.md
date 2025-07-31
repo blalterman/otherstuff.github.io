@@ -14,7 +14,7 @@ styling. The site can be deployed with GitHub Pages.
 ├── about.html         # About page
 ├── contact.html       # Contact page
 ├── research.html      # Research page
-├── publications.html  # Publications page
+├── publications.md    # Publications page
 ├── README.md          # Project documentation
 └── AGENTS.md          # Guidelines for using AI assistance
 ```
