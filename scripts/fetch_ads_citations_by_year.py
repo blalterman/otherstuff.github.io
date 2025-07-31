@@ -64,9 +64,9 @@ keys_to_get_citations = {"refereed":
 print("Downloading citation data by year...")
 for i, bibcode in enumerate(bibcodes, 1):
     url = f"https://api.adsabs.harvard.edu/v1/metrics/{bibcode}"
-    response = requests.get(url, headers=headers)    
+    response = requests.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"Failed to get metrics for ({i}) {bibcode}")
+        print(f"Failed to get metrics for ({i}) {bibcode} (status code {response.status_code})")
         continue
     data = response.json()
     hist = data.get("histograms", {}).get("citations", {})
