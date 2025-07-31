@@ -1,0 +1,17 @@
+/* Custom responsive design */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0 0.75rem;
+  }
+  .publication-list li {
+    font-size: 0.95rem;
+  }
+}
