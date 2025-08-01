@@ -34,7 +34,6 @@ img {
   background-color: #005a99;
 }
 
-
 .positions-table {
   width: 100%;
   border-collapse: collapse;
@@ -59,7 +58,6 @@ img {
 .positions-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-
 
 .education-table {
   width: 100%;
@@ -107,6 +105,7 @@ article.page {
   width: 120px;
   margin: 0 1rem 0.5rem 0;
   border-radius: 4px;
+  vertical-align: top;
 }
 
 @media (max-width: 600px) {
