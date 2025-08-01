@@ -19,3 +19,5 @@ Below are short descriptions of ongoing projects:
 - [Space Weather](/research/space_weather/)
 - [Suprathermal Ions](/research/suprathermal_ions/)
 - [Heavy Ion Composition](/research/heavy_ion_composition/)
+- [Coulomb Collisions](/research/coulomb_collisions/)
+- [Kinetic Physics](/research/kinetic_physics/)
