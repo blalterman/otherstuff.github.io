@@ -14,10 +14,8 @@ keywords:
 
 <p>
   <img src="/assets/images/headshot.jpg" alt="B. L. Alterman headshot" class="about-headshot" />
-  Ben Alterman is a Research Astrophysicist in Green Belt. MD He earned his PhD in Applied Physics from the University of Michigan, where he explored how Coulomb collisions and kinetic processes shape the solar wind. After completing a postdoc at the Southwest Research Institute in San Antonio—where he was promoted to Research Scientist—Ben transitioned to civil service at NASA, continuing his work in heliophysics.
+  I'm a Research Astrophysicist based in Greenbelt, MD, where I study how the Sun drives the solar wind and shapes the space environment of our solar system. I earned my PhD in Applied Physics from the University of Michigan, where I focused on how Coulomb collisions and kinetic processes influence the solar wind. After a postdoc at the Southwest Research Institute in San Antonio—where I was later promoted to Research Scientist—I joined NASA as a civil servant to continue my work in heliophysics.
 </p>
-
-I'm a Research Astrophysicist based in Greenbelt, MD, where I study how the Sun drives the solar wind and shapes the space environment of our solar system. I earned my PhD in Applied Physics from the University of Michigan, where I focused on how Coulomb collisions and kinetic processes influence the solar wind. After a postdoc at the Southwest Research Institute in San Antonio—where I was later promoted to Research Scientist—I joined NASA as a civil servant to continue my work in heliophysics.
 
 I consider myself a heliophysics generalist, working across the thermal and suprathermal solar wind. My research spans multiple spacecraft—including Wind, ACE, Parker Solar Probe, and Solar Orbiter—and timescales ranging from seconds to decades. I’m especially interested in how the composition and structure of the solar wind reflect both its solar source and the processes it undergoes during interplanetary travel. My recent work on helium abundance and heavy ion composition has opened up new questions about solar cycle variability and space weather forecasting.
 
