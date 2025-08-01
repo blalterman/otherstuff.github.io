@@ -1,6 +1,5 @@
 ---
 layout: single
-title: About
 permalink: /
 description: B. L. Alterman is a NASA Research Astrophysicist studying the solar wind, space weather, and humanity’s place in the heliosphere using data from Wind, ACE, Parker Solar Probe, and Solar Orbiter.
 author: B. L. Alterman
