@@ -69,11 +69,19 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 {% assign pubs = group.items | sort: "year" | reverse %}
 {% assign pub_count = pubs | size %}
 
+{% if group.name == "phdthesis" %}
+<ul class="publication-list unnumbered">
+  {% for pub in pubs %}
+    {% include publication_entry.liquid pub=pub %}
+  {% endfor %}
+</ul>
+{% else %}
 <ol class="publication-list" reversed start="{{ pub_count }}">
   {% for pub in pubs %}
     {% include publication_entry.liquid pub=pub %}
   {% endfor %}
 </ol>
+{% endif %}
 
 {% endif %}
 {% endfor %}
@@ -93,5 +101,9 @@ This page is automatically generated using data from [NASA ADS](https://ui.adsab
 }
 .publication-list a:hover {
   text-decoration: underline;
+}
+.publication-list.unnumbered {
+  list-style-type: none;
+  padding-left: 0;
 }
 </style>
